@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hero Section Background</title>
+    <style>
+      body {
+        background-color: #000;
+        color: #fff;
+        font-family: sans-serif;
+        margin: 0;
+        overflow: hidden;
+      }
+
+      .hero-section {
+        min-height: 100vh;
+        background-image: linear-gradient(to bottom right, #000, #111827, #000);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .animated-background {
+        position: absolute;
+        inset: 0;
+      }
+
+      .blur-circle-1 {
+        position: absolute;
+        top: 80px;
+        left: 40px;
+        width: 288px;
+        height: 288px;
+        background-color: rgba(251, 191, 36, 0.08);
+        border-radius: 9999px;
+        filter: blur(64px);
+        animation: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+      }
+
+      .blur-circle-2 {
+        position: absolute;
+        bottom: 80px;
+        right: 40px;
+        width: 384px;
+        height: 384px;
+        background-color: rgba(202, 138, 4, 0.04);
+        border-radius: 9999px;
+        filter: blur(64px);
+        animation: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        animation-delay: 1s;
+      }
+
+      .radial-gradient-circle {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 800px;
+        height: 800px;
+        border-radius: 9999px;
+        background-image: radial-gradient(
+          circle,
+          rgba(251, 191, 36, 0.03),
+          transparent
+        );
+      }
+
+      .technical-background {
+        position: absolute;
+        inset: 0;
+        overflow: hidden;
+        pointer-events: none;
+      }
+
+      .binary-rain {
+        position: absolute;
+        inset: 0;
+        opacity: 0.1;
+      }
+
+      .binary-rain-column {
+        position: absolute;
+        top: 0;
+        color: #fbbf24;
+        font-size: 12px;
+        font-family: monospace;
+        line-height: 1.5;
+        animation: binary-rain-fall linear infinite;
+      }
+
+      @keyframes binary-rain-fall {
+        from {
+          transform: translateY(-100%);
+          opacity: 0;
+        }
+        25% {
+          opacity: 1;
+        }
+        75% {
+          opacity: 1;
+        }
+        to {
+          transform: translateY(100vh);
+          opacity: 0;
+        }
+      }
+
+      .animated-code-terminal {
+        position: absolute;
+        top: 80px;
+        right: 40px;
+        background-color: rgba(17, 24, 39, 0.9);
+        backdrop-filter: blur(4px);
+        border: 1px solid rgba(251, 191, 36, 0.3);
+        border-radius: 0.5rem;
+        padding: 1rem;
+        font-family: monospace;
+        font-size: 14px;
+        max-width: 320px;
+      }
+
+      .terminal-header {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin-bottom: 0.5rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 1px solid rgba(251, 191, 36, 0.3);
+      }
+
+      .terminal-dot {
+        width: 12px;
+        height: 12px;
+        border-radius: 9999px;
+      }
+
+      .terminal-dot-red {
+        background-color: #ef4444;
+      }
+      .terminal-dot-yellow {
+        background-color: #f59e0b;
+      }
+      .terminal-dot-green {
+        background-color: #10b981;
+      }
+
+      .terminal-title {
+        color: #9ca3af;
+        font-size: 12px;
+        margin-left: 0.5rem;
+      }
+
+      .terminal-code {
+        color: #fbbf24;
+      }
+
+      .terminal-cursor {
+        display: inline-block;
+        width: 8px;
+        height: 16px;
+        background-color: #fbbf24;
+        margin-left: 4px;
+        animation: caret-blink 1.25s ease-out infinite;
+      }
+
+      .circuit-pattern {
+        position: absolute;
+        bottom: 40px;
+        left: 40px;
+        opacity: 0.2;
+      }
+
+      .circuit-path {
+        stroke: #fbbf24;
+        stroke-width: 2;
+        fill: none;
+        stroke-dasharray: 1000;
+        stroke-dashoffset: 1000;
+        animation: draw-circuit 3s ease-in-out infinite;
+      }
+
+      .circuit-dot {
+        fill: #fbbf24;
+        animation: pulse-dot 2s infinite;
+      }
+
+      .floating-stats {
+        position: absolute;
+        left: 40px;
+        top: 50%;
+        transform: translateY(-50%);
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .stats-box {
+        background-color: rgba(17, 24, 39, 0.8);
+        backdrop-filter: blur(4px);
+        border: 1px solid rgba(251, 191, 36, 0.3);
+        border-radius: 0.5rem;
+        padding: 0.75rem;
+        font-family: monospace;
+        font-size: 12px;
+      }
+
+      .matrix-rain {
+        position: absolute;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        width: 128px;
+        opacity: 0.05;
+        overflow: hidden;
+      }
+
+      .matrix-column {
+        position: absolute;
+        color: #fbbf24;
+        font-size: 12px;
+        font-family: monospace;
+        white-space: pre-line;
+        animation: matrix-fall linear infinite;
+      }
+
+      @keyframes pulse {
+        50% {
+          opacity: 0.5;
+        }
+      }
+
+      @keyframes caret-blink {
+        0%,
+        70%,
+        100% {
+          opacity: 1;
+        }
+        20%,
+        50% {
+          opacity: 0;
+        }
+      }
+
+      @keyframes draw-circuit {
+        to {
+          stroke-dashoffset: 0;
+        }
+      }
+
+      @keyframes pulse-dot {
+        0%,
+        100% {
+          transform: scale(1);
+          opacity: 0.5;
+        }
+        50% {
+          transform: scale(1.5);
+          opacity: 1;
+        }
+      }
+
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-10px);
+        }
+      }
+
+      @keyframes matrix-fall {
+        from {
+          transform: translateY(-100%);
+        }
+        to {
+          transform: translateY(100vh);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <section id="home" class="hero-section">
+      <div class="animated-background">
+        <div class="blur-circle-1"></div>
+        <div class="blur-circle-2"></div>
+        <div class="radial-gradient-circle"></div>
+      </div>
+
+      <div class="technical-background">
+        <div class="binary-rain"></div>
+
+        <div class="animated-code-terminal">
+          <div class="terminal-header">
+            <div class="terminal-dot terminal-dot-red"></div>
+            <div class="terminal-dot terminal-dot-yellow"></div>
+            <div class="terminal-dot terminal-dot-green"></div>
+            <span class="terminal-title">secure_terminal.js</span>
+          </div>
+          <div class="terminal-code">
+            <span style="color: #60a5fa">$</span> <span id="code-snippet"></span
+            ><span class="terminal-cursor"></span>
+          </div>
+        </div>
+
+        <div class="circuit-pattern">
+          <svg width="300" height="200" viewBox="0 0 300 200">
+            <path
+              class="circuit-path"
+              d="M50 50 L100 50 L100 100 L150 100 L150 150 L200 150"
+            />
+            <path
+              class="circuit-path"
+              d="M250 50 L200 50 L200 100 L150 100"
+              style="animation-delay: 1s"
+            />
+            <circle class="circuit-dot" cx="100" cy="50" r="4" />
+            <circle
+              class="circuit-dot"
+              cx="150"
+              cy="100"
+              r="4"
+              style="animation-delay: 0.5s"
+            />
+            <circle
+              class="circuit-dot"
+              cx="200"
+              cy="150"
+              r="4"
+              style="animation-delay: 1s"
+            />
+          </svg>
+        </div>
+
+        <div class="floating-stats">
+          <div class="stats-box">
+            <div style="color: #fbbf24">System Status</div>
+            <div style="color: #4ade80">◉ Firewall: Active</div>
+            <div style="color: #4ade80">◉ Encryption: 256-bit</div>
+            <div style="color: #60a5fa">◉ Network: Secured</div>
+          </div>
+          <div
+            class="stats-box"
+            style="animation: float 3s ease-in-out infinite"
+          >
+            <div style="color: #fbbf24">Live Metrics</div>
+            <div>CPU: <span style="color: #4ade80">12%</span></div>
+            <div>RAM: <span style="color: #60a5fa">4.2GB</span></div>
+            <div>Uptime: <span style="color: #a78bfa">127d</span></div>
+          </div>
+        </div>
+
+        <div class="matrix-rain"></div>
+      </div>
+    </section>
+
+    <script>
+      // Animated Code Terminal
+      const codeSnippets = [
+        "const cipher = new CryptoAlgorithm();",
+        "function decryptPassword() {",
+        "  return hash.verify(input);",
+        "}",
+        "",
+        "class SecureNetwork {",
+        "  authenticate(user) {",
+        "    return jwt.sign(payload);",
+        "  }",
+        "}",
+        "",
+        "await firewall.scan();",
+        'console.log("System secured ✓");',
+        "",
+      ];
+      let currentCodeIndex = 0;
+      let displayedCode = "";
+      const codeSnippetElement = document.getElementById("code-snippet");
+
+      function typeCode() {
+        const currentSnippet = codeSnippets[currentCodeIndex];
+        if (displayedCode.length < currentSnippet.length) {
+          displayedCode = currentSnippet.slice(0, displayedCode.length + 1);
+          codeSnippetElement.textContent = displayedCode;
+          setTimeout(typeCode, 100);
+        } else {
+          setTimeout(() => {
+            currentCodeIndex = (currentCodeIndex + 1) % codeSnippets.length;
+            displayedCode = "";
+            typeCode();
+          }, 1000);
+        }
+      }
+      typeCode();
+
+      // Binary Rain Effect
+      const binaryRainContainer = document.querySelector(".binary-rain");
+      for (let i = 0; i < 20; i++) {
+        const rainDrop = document.createElement("div");
+        rainDrop.className = "binary-rain-column";
+        rainDrop.style.left = `${(i / 20) * 100}%`;
+        rainDrop.style.animationDuration = `${3 + Math.random() * 2}s`;
+        rainDrop.style.animationDelay = `${Math.random() * 2}s`;
+        rainDrop.innerHTML = Array.from({ length: 15 }, () =>
+          Math.random() > 0.5 ? "1" : "0"
+        ).join("<br>");
+        binaryRainContainer.appendChild(rainDrop);
+      }
+
+      // Matrix Rain
+      const matrixRainContainer = document.querySelector(".matrix-rain");
+      const matrixCode = `if(secure){
+          encrypt();
+        }
+        while(true){
+          monitor();
+        }
+        function hash(){
+          return SHA256;
+        }
+        class Cipher{
+          decode(){
+            return data;
+          }
+        }`;
+
+      for (let i = 0; i < 8; i++) {
+        const matrixColumn = document.createElement("div");
+        matrixColumn.className = "matrix-column";
+        matrixColumn.style.left = `${i * 16}px`;
+        matrixColumn.style.animationDuration = `${5 + Math.random() * 3}s`;
+        matrixColumn.style.animationDelay = `${Math.random() * 2}s`;
+        matrixColumn.textContent = matrixCode;
+        matrixRainContainer.appendChild(matrixColumn);
+      }
+    </script>
+  </body>
+</html>
